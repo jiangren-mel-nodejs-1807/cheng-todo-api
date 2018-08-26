@@ -10,4 +10,12 @@ router.get('/', function(req, res, next) {
     itemModel.getAll(res);
 })
 
+router.post('/:id/part', function(req, res, next) {
+    itemModel.parts.create(res, req.params.id, req.body.name);
+})
+
+router.get('/:id/part', function(req, res, next) {
+    itemModel.parts.getAll(res);
+})
+
 module.exports = router;

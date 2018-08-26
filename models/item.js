@@ -11,6 +11,18 @@ var ItemModel = {
         db.all('select * from Todo', function(err, rows) {
             res.json(rows);
         });
+    },
+    parts: {
+        create: function(res, todoId, name) {
+            db.run('insert into Part (name, description, todoId) values ("' + name + '", "desc", ' + todoId + ')', function(result, err) {
+                res.sendStatus(200);
+            });
+        },
+        getAll: function(res) {
+            db.all('select Part.id, Part.name, Part.description from Part inner join Todo on Part.todoId = Todo.id where Todo.id = ' + 1, function(err, rows) {
+                res.json(rows);
+            })
+        }
     }
 }
 
